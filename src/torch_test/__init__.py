@@ -6,5 +6,5 @@ try:
     __version__ = version("torch-test")
 except PackageNotFoundError:
     __version__ = "uninstalled"
-__author__ = "Talley Lambert"
-__email__ = "talley.lambert@gmail.com"
+__author__ = "Marten Chaillet"
+__email__ = "marten.chaillet@gmail.com"
