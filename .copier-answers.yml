@@ -1,0 +1,8 @@
+# Do not edit - changes here will be overwritten by Copier
+_commit: v1
+_src_path: gh:pydev-guide/pyrepo-copier
+mode: tooling
+module_name: torch_test
+project_name: torch-test
+project_short_description: Package description.
+
