@@ -1,5 +1,15 @@
-import torch_test
+import torch
 
 
-def test_imports_with_version():
-    assert isinstance(torch_test.__version__, str)
+SHAPE = (10, ) * 3
+
+
+def test_cpu():
+    x = torch.zeros(SHAPE, device='cpu')
+    assert x.shape == SHAPE
+
+
+def test_gpu():
+    x = torch.zeros(SHAPE, device='cuda')
+    assert x.shape == SHAPE
+
