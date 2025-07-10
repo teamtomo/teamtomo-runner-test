@@ -28,4 +28,4 @@ jobs:
           conda list
       - name: Run tests
         run: |
-          pytest
+          python -m pytest
