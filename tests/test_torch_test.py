@@ -12,4 +12,5 @@ def test_cpu():
 def test_gpu():
     x = torch.zeros(SHAPE, device='cuda')
     assert x.shape == SHAPE
+    assert 'cuda' in str(x.device)
 
