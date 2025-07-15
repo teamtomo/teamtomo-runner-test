@@ -53,6 +53,6 @@ jobs:
   upload_coverage:
     if: always()
     needs: [test]
-    uses: pyapp-kit/workflows/.github/workflows/upload-coverage.yml@v2
+    uses: McHaillet/workflows/.github/workflows/upload-coverage.yml@main
     secrets:
       codecov_token: ${{ secrets.CODECOV_TOKEN }}
