@@ -1,16 +1,19 @@
 import torch
+from torch_test import cover_me
 
 
 SHAPE = (10, ) * 3
 
 
 def test_cpu():
-    x = torch.zeros(SHAPE, device='cpu')
-    assert x.shape == SHAPE
+    x = torch.ones(SHAPE, device='cpu')
+    y = cover_me(x)
+    assert y.shape == SHAPE
 
 
 def test_gpu():
-    x = torch.zeros(SHAPE, device='cuda')
-    assert x.shape == SHAPE
-    assert 'cuda' in str(x.device)
+    x = torch.ones(SHAPE, device='cuda')
+    y = cover_me(x)
+    assert y.shape == SHAPE
+    assert 'cuda' in str(y.device)
 
