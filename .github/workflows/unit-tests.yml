@@ -15,19 +15,24 @@ concurrency:
 
 jobs:
   test:
+    name: ubuntu-gpu (${{ matrix.python-version }})
     runs-on: [self-hosted, linux, x64, gpu]
     container:
       image: continuumio/miniconda3
       options: --runtime=nvidia --gpus all
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12"]
     
     steps:
     
       - name: Pull code
         uses: actions/checkout@v4
         
-      - name: Install dependencies
+      - name: Set up conda with python-${{ matrix.python-version }}
         run: |
-          conda install -y python=3.12
+          conda install -y python=${{ matrix.python-version }}
           
       - name: Install base test code
         run: |
@@ -37,5 +42,16 @@ jobs:
       - name: Run Tests
         run: pytest --color=yes --cov --cov-report=xml --cov-report=term-missing
         
-      - name: Coverage
-        uses: codecov/codecov-action@v5
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: covreport-${{ matrix.python-version }}
+          path: ./.coverage*
+          include-hidden-files: true
+
+  upload_coverage:
+    if: always()
+    needs: [test]
+    uses: pyapp-kit/workflows/.github/workflows/upload-coverage.yml@v2
+    secrets:
+      codecov_token: ${{ secrets.CODECOV_TOKEN }}
