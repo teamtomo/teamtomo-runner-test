@@ -1,4 +1,5 @@
-name: "Unit tests"
+name: CI
+
 on:
   push:
     branches: [main]
@@ -15,7 +16,7 @@ concurrency:
 
 jobs:
   test:
-    name: ubuntu-gpu (${{ matrix.python-version }})
+    name: ubuntu gpu python-${{ matrix.python-version }}
     runs-on: [self-hosted, linux, x64, gpu]
     container:
       image: continuumio/miniconda3
