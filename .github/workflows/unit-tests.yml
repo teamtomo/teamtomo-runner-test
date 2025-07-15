@@ -9,10 +9,6 @@ on:
     # run every week (for --pre release tests)
     - cron: "0 0 * * 0"
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   test:
     runs-on: [self-hosted, linux, x64, gpu]
