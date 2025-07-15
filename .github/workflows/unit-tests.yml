@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test_suite:
+  test:
     runs-on: [self-hosted, linux, x64, gpu]
     container:
       image: continuumio/miniconda3
@@ -29,5 +29,5 @@ jobs:
         run: |
           python -m pip install .[test]
           conda list
-      - name: 🧪 Run Tests
+      - name: Run Tests
         run: pytest --color=yes --cov --cov-report=xml --cov-report=term-missing
