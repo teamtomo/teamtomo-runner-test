@@ -37,16 +37,5 @@ jobs:
       - name: Run Tests
         run: pytest --color=yes --cov --cov-report=xml --cov-report=term-missing
         
-      - name: Upload coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: covreport
-          path: ./.coverage*
-          include-hidden-files: true
-
-  upload_coverage:
-    if: always()
-    needs: [test]
-    uses: pyapp-kit/workflows/.github/workflows/upload-coverage.yml@v2
-    secrets:
-      codecov_token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Coverage
+        uses: codecov/codecov-action@v5
