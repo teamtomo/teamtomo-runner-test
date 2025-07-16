@@ -61,7 +61,7 @@ jobs:
           include-hidden-files: true
 
   upload_coverage:
-    # This combines the upload artifacts from the runners into a single
+    # This combines the uploaded artifacts from the runners into a single
     # coverage report that is uploaded to codecov and added to the PR
     if: always()
     needs: [test]
