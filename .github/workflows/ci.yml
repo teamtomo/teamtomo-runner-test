@@ -28,7 +28,7 @@ jobs:
     runs-on: [self-hosted, linux, x64, gpu]
     container:
       image: continuumio/miniconda3
-      options: --runtime=nvidia --gpus all
+      options: --runtime=nvidia --gpus device=0,1
     strategy:
       fail-fast: false
       matrix:
@@ -50,7 +50,7 @@ jobs:
           
       - name: Run Tests
         run: |
-          CUDA_VISIBLE_DEVICES=0,1 COVERAGE_FILE=.coverage.${{ matrix.python-version }} pytest --color=yes --cov --cov-report=xml --cov-report=term-missing
+          COVERAGE_FILE=.coverage.${{ matrix.python-version }} pytest --color=yes --cov --cov-report=xml --cov-report=term-missing
         
       - name: Upload coverage
         # upload the coverage artifact from the runner
